@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-bodoni), ui-serif, Georgia, serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-gold: #d4af37;
+  --color-midnight: #0a0e14;
+}
+
+@layer base {
+  body {
+    @apply bg-midnight text-white;
+  }
+}
+
+.glass-panel {
+  @apply bg-white/[0.08] backdrop-blur-xl border border-white/[0.15] rounded-sm;
+}
+
+.glass-card {
+  @apply bg-white/[0.08] backdrop-blur-xl border border-white/[0.15] shadow-2xl rounded-sm;
+}
+
+.vertical-line {
+  @apply w-[1px] h-[60px] bg-gold mb-5;
+}
+
+.nav-link {
+  @apply text-[11px] uppercase tracking-[0.15em] text-white/70 border-b border-transparent pb-[2px] transition-all hover:text-gold hover:border-gold;
+}
+
+.btn-gold {
+  @apply bg-gold text-midnight font-semibold uppercase tracking-[0.1em] text-[11px] px-6 py-3 transition-opacity hover:opacity-80;
+}
