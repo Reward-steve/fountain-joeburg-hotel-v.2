@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+* {
+  scrollbar-width: none;
+}
+
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-bodoni), ui-serif, Georgia, serif;

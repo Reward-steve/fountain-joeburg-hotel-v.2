@@ -1,11 +1,20 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion"; // Synced standard framer-motion library integration
 import { Mail, Phone, MapPin, Send, HelpCircle } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
+import {
+  InputField,
+  ContactInfoItem,
+} from "@/src/components/contact/contactFormElements";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -15,138 +24,144 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-32 pb-24 px-6 min-h-screen">
+    <div className="bg-[#0F1115] text-white pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 min-h-screen antialiased">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-          {/* Left Column: Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Layout Grid Node: Branding & Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-12"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-8 sm:space-y-12 lg:col-span-5"
           >
-            <div className="space-y-6">
-              <p className="text-gold font-display uppercase tracking-[0.3em] text-xs">Concierge & Access</p>
-              <h1 className="font-serif text-5xl md:text-8xl leading-none">Contact <span className="italic font-light">Us</span></h1>
-              <p className="text-white/60 font-light leading-relaxed text-lg max-w-md">
-                Our team is available 24/7 to assist with your journey. Whether it's a booking inquiry or a bespoke concierge request, we are here to ensure your peace of mind.
+            <div className="space-y-3 sm:space-y-4">
+              <p className="text-gold font-display uppercase tracking-[0.25em] text-[10px] sm:text-xs font-semibold">
+                Concierge & Access
+              </p>
+              <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-none">
+                Contact{" "}
+                <span className="italic font-light text-gold/90">Us</span>
+              </h1>
+              <p className="text-white/60 font-light leading-relaxed text-sm sm:text-base max-w-md pt-2">
+                Our team is available 24/7 to assist with your journey. Whether
+                it's a booking inquiry or a bespoke concierge request, we are
+                here to ensure absolute peace of mind.
               </p>
             </div>
 
-            <div className="space-y-8 pt-6">
-              <div className="flex gap-6 items-start">
-                 <div className="w-12 h-12 rounded-full glass-panel flex items-center justify-center shrink-0">
-                    <MapPin className="text-gold" size={20} />
-                 </div>
-                 <div>
-                    <h4 className="font-display uppercase tracking-widest text-xs text-gold mb-2">Location</h4>
-                    <p className="text-white/70 font-light">15 Fountain Drive, Sandton<br />Johannesburg, 2196, South Africa</p>
-                 </div>
-              </div>
-              <div className="flex gap-6 items-start">
-                 <div className="w-12 h-12 rounded-full glass-panel flex items-center justify-center shrink-0">
-                    <Phone className="text-gold" size={20} />
-                 </div>
-                 <div>
-                    <h4 className="font-display uppercase tracking-widest text-xs text-gold mb-2">Phone</h4>
-                    <p className="text-white/70 font-light">+27 (0) 11 456 7890</p>
-                 </div>
-              </div>
-              <div className="flex gap-6 items-start">
-                 <div className="w-12 h-12 rounded-full glass-panel flex items-center justify-center shrink-0">
-                    <Mail className="text-gold" size={20} />
-                 </div>
-                 <div>
-                    <h4 className="font-display uppercase tracking-widest text-xs text-gold mb-2">Email</h4>
-                    <p className="text-white/70 font-light">concierge@fountain-joeburg.com</p>
-                 </div>
-              </div>
+            {/* Dynamic Custom Contact Metadata Stack */}
+            <div className="space-y-4 sm:space-y-6">
+              <ContactInfoItem
+                icon={<MapPin />}
+                label="Location"
+                value={
+                  <span>
+                    15 Fountain Drive, Sandton
+                    <br />
+                    Johannesburg, 2196, South Africa
+                  </span>
+                }
+              />
+              <ContactInfoItem
+                icon={<Phone />}
+                label="Phone"
+                value={<span>+27 (0) 11 456 7890</span>}
+              />
+              <ContactInfoItem
+                icon={<Mail />}
+                label="Email"
+                value={<span>concierge@fountain-joeburg.com</span>}
+              />
             </div>
 
-            <div className="pt-12">
-               <div className="glass-card p-8 rounded-3xl border-gold/20 flex gap-6 items-center">
-                  <HelpCircle className="text-gold w-10 h-10 shrink-0" />
-                  <div>
-                    <h4 className="font-serif text-xl mb-1 italic">VVIP Concierge</h4>
-                    <p className="text-xs text-white/40 uppercase tracking-[0.2em]">Priority response for signature suite guests</p>
-                  </div>
-               </div>
+            {/* VVIP Structural Banner */}
+            <div className="pt-2 sm:pt-4">
+              <div className="bg-white/[0.03] p-4 sm:p-6 rounded-2xl border border-white/5 flex gap-4 sm:gap-5 items-center backdrop-blur-md">
+                <HelpCircle className="text-gold w-8 h-8 shrink-0" />
+                <div>
+                  <h4 className="font-serif text-lg text-white">
+                    VVIP Concierge
+                  </h4>
+                  <p className="text-[9px] text-white/40 uppercase tracking-[0.15em] mt-0.5">
+                    Priority response for signature suite guests
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Form */}
+          {/* Right Layout Grid Node: Form & Interactive Map */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="glass-card p-10 md:p-16 rounded-[4rem] relative"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-white/[0.02] border border-white/5 p-5 sm:p-10 lg:p-12 rounded-[2rem] sm:rounded-[3rem] backdrop-blur-sm lg:col-span-7 space-y-10"
           >
             {submitted ? (
-              <div className="h-[500px] flex flex-col items-center justify-center text-center space-y-6">
-                <div className="w-20 h-20 bg-gold rounded-full flex items-center justify-center text-charcoal">
-                  <Send size={32} />
+              <div className="h-[350px] sm:h-[450px] flex flex-col items-center justify-center text-center space-y-4">
+                <div className="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-[#0F1115] shadow-lg shadow-gold/20">
+                  <Send size={24} />
                 </div>
-                <h3 className="font-serif text-3xl italic">Message Sent</h3>
-                <p className="text-white/50 max-w-xs">Our concierge team will review your request and get back to you shortly.</p>
+                <h3 className="font-serif text-2xl sm:text-3xl italic">
+                  Message Sent
+                </h3>
+                <p className="text-white/50 text-xs sm:text-sm max-w-xs font-light">
+                  Our concierge team will review your request and get back to
+                  you shortly.
+                </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-display">Your Name</label>
-                  <input
-                    required
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-white/5 border-b border-white/10 py-4 text-white focus:outline-none focus:border-gold transition-colors font-light"
-                    placeholder="Enter your full name"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-display">Email Address</label>
-                  <input
-                    required
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-white/5 border-b border-white/10 py-4 text-white focus:outline-none focus:border-gold transition-colors font-light"
-                    placeholder="example@luxury.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-display">How can we assist you?</label>
-                  <textarea
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-white/5 border-b border-white/10 py-4 text-white focus:outline-none focus:border-gold transition-colors font-light resize-none"
-                    placeholder="Tell us about your request..."
-                  />
-                </div>
+              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+                <InputField
+                  label="Your Name"
+                  placeholder="Enter your full name"
+                  value={formData.name}
+                  onChange={(val) => setFormData({ ...formData, name: val })}
+                />
+                <InputField
+                  label="Email Address"
+                  placeholder="example@luxury.com"
+                  type="email"
+                  value={formData.email}
+                  onChange={(val) => setFormData({ ...formData, email: val })}
+                />
+                <InputField
+                  label="How can we assist you?"
+                  placeholder="Tell us about your request..."
+                  isTextArea
+                  value={formData.message}
+                  onChange={(val) => setFormData({ ...formData, message: val })}
+                />
+
                 <button
                   type="submit"
-                  className="w-full py-6 bg-gold text-charcoal rounded-full font-display uppercase tracking-widest font-bold text-sm shadow-xl shadow-gold/20 hover:bg-gold-light transition-all flex items-center justify-center gap-3 group"
+                  className="w-full py-4 bg-gold text-[#0F1115] rounded-xl font-display uppercase tracking-[0.15em] font-bold text-xs shadow-lg shadow-gold/10 hover:bg-opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-4"
+                  style={{ touchAction: "manipulation" }}
                 >
                   Send Inquiry
-                  <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <Send
+                    size={14}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  />
                 </button>
               </form>
             )}
-            
-            {/* Map Placeholder */}
-            <div className="mt-16 overflow-hidden rounded-[2rem] aspect-video border border-white/10 grayscale contrast-125 opacity-50 relative">
-               <img
-                 src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&h=400&auto=format&fit=crop"
-                 alt="Map Placeholder"
-                 className="w-full h-full object-cover"
-                 referrerPolicy="no-referrer"
-               />
-               <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-4 h-4 bg-gold rounded-full animate-ping"></div>
-                  <div className="w-3 h-3 bg-gold rounded-full absolute"></div>
-               </div>
-               <div className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 glass-panel rounded-full text-[8px] uppercase tracking-widest text-gold whitespace-nowrap">
-                  Sandton, Johannesburg
-               </div>
+
+            {/* Clean Next.js-Optimized Interactive Map Node Wrapper */}
+            <div className="overflow-hidden rounded-2xl aspect-[21/9] sm:aspect-video border border-white/5 grayscale contrast-125 opacity-40 relative">
+              <Image
+                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200"
+                alt="Sandton, Johannesburg map grid visualization layout"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-3.5 h-3.5 bg-gold rounded-full animate-ping" />
+                <div className="w-2.5 h-2.5 bg-gold rounded-full absolute" />
+              </div>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#0F1115]/90 backdrop-blur-md border border-white/5 rounded-full text-[8px] uppercase tracking-widest text-gold whitespace-nowrap">
+                Sandton, Johannesburg
+              </div>
             </div>
           </motion.div>
         </div>
