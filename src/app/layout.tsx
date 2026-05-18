@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Bodoni_Moda } from "next/font/google";
+// @ts-ignore
 import "./globals.css";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
