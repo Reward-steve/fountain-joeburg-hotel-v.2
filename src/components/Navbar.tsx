@@ -40,9 +40,9 @@ export default function Navbar() {
   const menuVariants = {
     closed: {
       opacity: 0,
-      y: "-100%",
+      y: -1000,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 40,
         staggerChildren: 0.05,
@@ -53,7 +53,7 @@ export default function Navbar() {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 30,
         staggerChildren: 0.07,
