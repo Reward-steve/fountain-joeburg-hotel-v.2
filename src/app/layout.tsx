@@ -33,7 +33,7 @@ export default function RootLayout({
       {/* FIXED: Attached font variables to the body alongside antialiasing rules to guarantee safe inheritance across all child paths */}
       <body className="bg-midnight text-white font-sans antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-gold/30">
         <Navbar />
-        {/* Added flex-grow so the footer stays cleanly pinned to the bottom on short pages */}
+
         <main>{children}</main>
         <Footer />
       </body>
