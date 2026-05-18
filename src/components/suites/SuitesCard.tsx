@@ -109,10 +109,10 @@ export function SuiteCard({ suite, index }: SuiteCardProps) {
 
         {/* Tactile Native Touch CTA Buttons Group */}
         <div className="flex flex-col sm:flex-row gap-3 pt-4 sm:pt-6">
-          <Link href={"/suites"}>
+          <Link href={"/suites"} className="w-full sm:w-auto">
             <Button size={"lg"}>Reserve Suite</Button>
           </Link>
-          <Link href={"/gallery"}>
+          <Link href={"/gallery"} className="w-full sm:w-auto">
             <Button size={"lg"} variant="secondary">
               View Gallery
             </Button>
