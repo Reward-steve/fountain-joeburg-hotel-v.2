@@ -2,6 +2,9 @@
 
 * {
   scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none; /* Cross-browser safety block to hide layout scrollbars */
+  }
 }
 
 @theme {
@@ -11,30 +14,84 @@
 
   --color-gold: #d4af37;
   --color-midnight: #0a0e14;
-}
 
-@layer base {
-  body {
-    @apply bg-midnight text-white;
+  /* Added custom animation hook natively inside v4 syntax engine */
+  --animate-shimmer: shimmer 3s infinite;
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
   }
 }
 
+/* Tailwind v4 completely removes old @layer base syntax. 
+   We apply base node styling directly using standard CSS nesting */
+body {
+  background-color: var(--color-midnight);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* PREMIUM UTILITY CLASSES */
+
 .glass-panel {
-  @apply bg-white/[0.08] backdrop-blur-xl border border-white/[0.15] rounded-sm;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.125rem; /* modern clean square-edge luxury baseline */
 }
 
 .glass-card {
-  @apply bg-white/[0.08] backdrop-blur-xl border border-white/[0.15] shadow-2xl rounded-sm;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-radius: 0.125rem;
 }
 
 .vertical-line {
-  @apply w-[1px] h-[60px] bg-gold mb-5;
+  width: 1px;
+  height: 60px;
+  background-color: var(--color-gold);
+  margin-bottom: 1.25rem;
 }
 
 .nav-link {
-  @apply text-[11px] uppercase tracking-[0.15em] text-white/70 border-b border-transparent pb-[2px] transition-all hover:text-gold hover:border-gold;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+  }
 }
 
 .btn-gold {
-  @apply bg-gold text-midnight font-semibold uppercase tracking-[0.1em] text-[11px] px-6 py-3 transition-opacity hover:opacity-80;
+  background-color: var(--color-gold);
+  color: var(--color-midnight);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  padding: 0.75rem 1.5rem;
+  transition: opacity 0.2s ease-out;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+/* Cinematic mask gradient for the custom suites swiper section edge layout */
+.mask-gradient-right {
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
 }
